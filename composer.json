@@ -1,0 +1,19 @@
+{
+    "name": "anafro/biosphere",
+    "description": "The best bidirectional event exchanging for Laravel it truly deserves, periodt!",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Anafro\\Biosphere\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anatoly Frolov (anafro)",
+            "email": "anatolyfroloff@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
