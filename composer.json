@@ -8,6 +8,11 @@
             "Anafro\\Biosphere\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Anatoly Frolov (anafro)",
@@ -15,5 +20,29 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.29",
+        "pestphp/pest": "^4.4",
+        "orchestra/testbench": "^11.0"
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {},
+    "require": {
+        "elephantio/elephant.io": "^5.3",
+        "illuminate/console": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anafro\\Biosphere\\Providers\\BiosphereServiceProvider"
+            ]
+        }
+    }
 }
