@@ -48,7 +48,7 @@ class BiosphereServe extends Command
             match ($message->event) {
                 'connect' =>    $channel->connected($user),
                 'disconnect' => $channel->disconnected($user),
-                'ponged' =>     $channel->heartbeat($user),
+                'pong' =>       $channel->heartbeat($user),
                 default =>      $channel->message($message),
             };
         } catch (Throwable $e) {
