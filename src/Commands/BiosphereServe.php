@@ -18,14 +18,12 @@ class BiosphereServe extends Command
     public function handle()
     {
         $redisChannel = env('BIOSPHERE_REDIS_CHANNEL_TO_SERVER');
-        Log::info("Laravel app will receive events for Biosphere events from '$redisChannel' Redis channel.");
         Redis::connection('sub')->subscribe([$redisChannel], Closure::fromCallable([$this, 'onMessage']));
     }
 
     public function onMessage(string $message): void
     {
         try {
-            Log::info("Received a message: $message");
             $message = json_decode($message, associative: true);
             $channelName = $message['channel'];
             $event = $message['event'];
