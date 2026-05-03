@@ -4,6 +4,7 @@ namespace Anafro\Biosphere\Channels;
 
 use Anafro\Biosphere\Facades\Biosphere;
 use Anafro\Biosphere\Messages\Message;
+use Illuminate\Support\Facades\Log;
 
 abstract class Channel
 {
@@ -22,7 +23,7 @@ abstract class Channel
         return $this->parameters[$name];
     }
 
-    protected function send(string $event, array $data)
+    public function send(string $event, array $data = [])
     {
         $message = new Message(
             receiver: 'client',
@@ -31,6 +32,26 @@ abstract class Channel
             data: $data,
         );
         Biosphere::send($message);
+    }
+
+    public function schedule(string $key, string $event, string $delay, array $data)
+    {
+        $this->send($event, [
+            'schedule' => $key,
+            ...compact('delay'),
+            ...$data,
+        ]);
+
+        Log::info("(Server) Schedule $key!");
+    }
+
+    public function cancel(string $key)
+    {
+        $this->send('cancel', [
+            'cancel' => $key,
+        ]);
+
+        Log::info("(Server) Cancel $key!");
     }
 
     /**
