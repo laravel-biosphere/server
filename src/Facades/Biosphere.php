@@ -16,7 +16,7 @@ final class Biosphere
         //
     }
 
-    public static function routes()
+    public static function routes(): void
     {
         Route::middleware('biosphere.proxy')->group(function () {
             Route::post('/biosphere/authorize', BiosphereAuthorizationController::class);
@@ -25,13 +25,13 @@ final class Biosphere
         Route::post('/biosphere/new-token', BiosphereNewTokenController::class);
     }
 
-    public static function channel(string $pattern, string $class)
+    public static function channel(string $pattern, string $class): void
     {
         $channels = resolve(ChannelRegistrar::class);
         $channels->register($pattern, $class);
     }
 
-    public static function send(Message $message)
+    public static function send(Message $message): void
     {
         $redisChannel = env('BIOSPHERE_REDIS_CHANNEL_FROM_SERVER');
         Redis::connection('pub')->publish($redisChannel, $message->toJson(receiver: 'client'));
