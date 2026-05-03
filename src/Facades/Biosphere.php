@@ -6,7 +6,6 @@ use Anafro\Biosphere\Channels\ChannelRegistrar;
 use Anafro\Biosphere\Http\Controllers\BiosphereAuthorizationController;
 use Anafro\Biosphere\Http\Controllers\BiosphereNewTokenController;
 use Anafro\Biosphere\Messages\Message;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +34,6 @@ final class Biosphere
     public static function send(Message $message)
     {
         $redisChannel = env('BIOSPHERE_REDIS_CHANNEL_FROM_SERVER');
-        Log::info("Sent a message to $redisChannel: " . var_export($message, return: true));
         Redis::connection('pub')->publish($redisChannel, $message->toJson(receiver: 'client'));
     }
 }
