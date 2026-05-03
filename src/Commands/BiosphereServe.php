@@ -27,7 +27,7 @@ class BiosphereServe extends Command
             $message = json_decode($message, associative: true);
             $channelName = $message['channel'];
             $event = $message['event'];
-            $user = $this->model::find($message['userId']);
+            $user = array_key_exists('userId', $message) ? $this->model::find($message['userId']) : null;
 
             $channels = resolve(ChannelRegistrar::class);
             $channel = $channels->find($channelName);
