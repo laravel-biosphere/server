@@ -1,5 +1,5 @@
 {
-    "name": "anafro/biosphere",
+    "name": "laravel-biosphere/server",
     "description": "The best bidirectional event exchanging for Laravel it truly deserves, periodt!",
     "type": "library",
     "license": "MIT",
